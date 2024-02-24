@@ -10,7 +10,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  <button>Clique moi</button>
+
 
   <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"
   xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
@@ -31,6 +31,14 @@
 
   </svg>
 
+  <div class="first-div">
+    <button>Clique moi</button>
+  </div>
+
+  <div class="sdn-div">
+
+  </div>
+
   <script>
 
     const circleSvg = document.querySelector('svg')
@@ -41,26 +49,43 @@
       //let intv = 0
 
       window.addEventListener('mousemove', (event) => {
-          // circleSvg.style.top = event.clientY - 45;
-          // circleSvg.style.left = event.clientX - 45;
+      // circleSvg.style.top = event.clientY - 45;
+      // circleSvg.style.left = event.clientX - 45;
 
-          mouseY = (event.clientY / 16) - (45 / 16) + 'rem'
-          mouseX = (event.clientX / 16) - (45 / 16) + 'rem'
-      })
+      mouseY = (event.clientY) - (45)
+      mouseX = (event.clientX) - (45)
 
-      const mouseMove = () => {
-          //intv += 1
+  })
 
-          circleSvg.style.top = mouseY
-          circleSvg.style.left = mouseX
+  let scrollY = 0
 
-          //circleSvg.style.opacity = 1 + Math.sin(intv * .04)
-          //console.log(Math.sin(intv * .04))
+  window.addEventListener('scroll', (event) => {
+      // circleSvg.style.top = event.clientY - 45;
+      // circleSvg.style.left = event.clientX - 45;
 
-          window.requestAnimationFrame(mouseMove)
-      }
+      scrollY =  window.scrollY
+      console.log(scrollY)
 
-      mouseMove()
+  })
+
+
+
+
+
+  const mouseMove = () => {
+      //intv += 1
+
+      circleSvg.style.top = mouseY + scrollY + 'px'
+      circleSvg.style.left = mouseX + 'px'
+
+
+      //circleSvg.style.opacity = 1 + Math.sin(intv * .04)
+      //console.log(Math.sin(intv * .04))
+
+      window.requestAnimationFrame(mouseMove)
+  }
+
+  mouseMove()
 
       var tl = gsap.timeline({defaults: {ease: "power2.inOut"}})
 
